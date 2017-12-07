@@ -1,38 +1,32 @@
 package com.poc.config.rabbit;
 
-import com.poc.config.rabbit.common.RabbitConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ProducerQueueConfig extends RabbitConfig {
 
-    @Override
-    public Boolean isActive() {
-        return null;
-    }
+    @Value("${rabbitmq.producerExchange.name}")
+    private String exchange;
+
+    @Value("${rabbitmq.producerExchange.producerQueue.name}")
+    private String queue;
+
+    @Value("${rabbitmq.producerExchange.producerQueue.routingKey}")
+    private String routingKey;
 
     @Override
     public String getExchange() {
-        return null;
+        return exchange;
     }
 
     @Override
     public String getQueue() {
-        return null;
+        return queue;
     }
 
     @Override
     public String getRoutingKey() {
-        return null;
-    }
-
-    @Override
-    public String getOptions() {
-        return null;
-    }
-
-    @Override
-    public String getExchangeType() {
-        return null;
+        return routingKey;
     }
 }

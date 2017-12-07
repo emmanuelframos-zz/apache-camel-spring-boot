@@ -1,4 +1,4 @@
-package com.poc.config.rabbit.common;
+package com.poc.config.rabbit;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,43 +20,19 @@ public abstract class RabbitConfig {
     @Value("${rabbitmq.password}")
     private String password;
 
-    @Value("${rabbitmq.deliveryMode}")
-    private String deliveryMode;
-
-    @Value("${rabbitmq.autoDelete}")
-    private Boolean autoDelete;
-
     public String build() {
-        return build(false);
-    }
-
-    public String buildError() {
-        return build(true);
-    }
-
-    private String build(boolean isError) {
         return "rabbitmq://" + this.host + ":" + this.port + "/" + this.getExchange()
                 + "?username=" + this.username + "&password=" + this.password
-                + "&exchangeType=" + this.getExchangeType()
+                + "&exchangeType=direct"
                 + "&routingKey=" + this.getRoutingKey()
                 + "&queue=" + this.getQueue()
-                + this.getOptions();
+                + "&autoDelete=false";
     }
-
-    public abstract Boolean isActive();
 
     public abstract String getExchange();
 
     public abstract String getQueue();
 
     public abstract String getRoutingKey();
-
-    public abstract String getOptions();
-
-    public abstract String getExchangeType();
-
-    public String getIndexHeaderName(){return "";}
-
-    public String getXmlTagName(){return "";}
 
 }

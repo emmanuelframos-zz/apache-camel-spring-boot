@@ -1,6 +1,6 @@
 package com.poc.integration.route;
 
-import com.poc.config.rabbit.common.RabbitConfig;
+import com.poc.config.rabbit.RabbitConfig;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,29 +12,26 @@ import org.springframework.stereotype.Component;
 public class FromJSONFileToProducerQueue extends RouteBuilder {
 
     @Autowired
-    @Qualifier(value="ProducerQueueConfig")
+    @Qualifier(value="producerQueueConfig")
     private RabbitConfig rabbitProducerConfig;
 
     private static Logger logger = LoggerFactory.getLogger(FromJSONFileToProducerQueue.class);
 
     @Override
     public void configure() throws Exception {
-        if (!rabbitProducerConfig.isActive()) {
-            logger.warn(this.getClass().getSimpleName() + " is inactive.");
-            return;
-        }
 
-        from("")
+        from("file://src/main/resources/files?noop=true")
 
-                .routeId("1-STEP_".concat(this.getClass().getSimpleName()))
+            .routeId("1-STEP_".concat(this.getClass().getSimpleName()))
 
-                .routeDescription("This route converts from ")
+            .routeDescription("This route reads a file and send to producer queue.")
 
-                .split(body())
+            .convertBodyTo(String.class)
 
-                .setHeader("CamelSplitIndex", simple("${header.CamelSplitIndex}"))
+            .log("${body}")
 
-                .to("");
+            .setHeader("rabbitmq.DELIVERY_MODE", simple("2"))
 
+            .to(rabbitProducerConfig.build());
     }
 }

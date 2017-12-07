@@ -1,6 +1,6 @@
 package com.poc.integration.route;
 
-import com.poc.config.rabbit.common.RabbitConfig;
+import com.poc.config.rabbit.RabbitConfig;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 public class FromProducerQueueToConsumerQueue extends RouteBuilder {
 
     @Autowired
-    @Qualifier(value="ProducerQueueConfig")
+    @Qualifier(value="producerQueueConfig")
     private RabbitConfig rabbitProducerConfig;
 
     @Autowired
-    @Qualifier(value="ConsumerQueueConfig")
+    @Qualifier(value="consumerQueueConfig")
     private RabbitConfig rabbitConsumerConfig;
 
 
@@ -24,21 +24,15 @@ public class FromProducerQueueToConsumerQueue extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        if (!rabbitProducerConfig.isActive()) {
-            logger.warn(this.getClass().getSimpleName() + " is inactive.");
-            return;
-        }
 
-        from("")
+        from(rabbitProducerConfig.build())
 
-                .routeId("1-STEP_".concat(this.getClass().getSimpleName()))
+            .routeId("2-STEP_".concat(this.getClass().getSimpleName()))
 
-                .routeDescription("This route converts from ")
+            .routeDescription("This route get JSON from producer queue and send to consumer queue.")
 
-                .split(body())
+            .setHeader("rabbitmq.DELIVERY_MODE", simple("2"))
 
-                .setHeader("CamelSplitIndex", simple("${header.CamelSplitIndex}"))
-
-                .to("");
+            .to(rabbitConsumerConfig.build());
     }
 }
