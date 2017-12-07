@@ -19,7 +19,7 @@ An background application using Apache Camel with Spring Boot stack. The objecti
 ## Funcionalities
 - The producer route reads data from file and stores in a queue (QU_PRODUCER).
 - The consumer route consumes data from producer queue (QU_PRODUCER) and sends to consumer queue (QU_CONSUMER) as below:
-![](https://drive.google.com/file/d/1ZJ_R2D_ZH7kYueN6XtCITTUx9e7CKrOy/view)
+![](https://ibb.co/e0N8pb)
 
 ## Supported Versions
 We recommend that you use:
