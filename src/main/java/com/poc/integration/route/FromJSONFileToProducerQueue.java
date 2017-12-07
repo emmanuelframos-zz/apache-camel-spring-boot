@@ -2,8 +2,6 @@ package com.poc.integration.route;
 
 import com.poc.config.rabbit.RabbitConfig;
 import org.apache.camel.builder.RouteBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -14,8 +12,6 @@ public class FromJSONFileToProducerQueue extends RouteBuilder {
     @Autowired
     @Qualifier(value="producerQueueConfig")
     private RabbitConfig rabbitProducerConfig;
-
-    private static Logger logger = LoggerFactory.getLogger(FromJSONFileToProducerQueue.class);
 
     @Override
     public void configure() throws Exception {
@@ -28,9 +24,9 @@ public class FromJSONFileToProducerQueue extends RouteBuilder {
 
             .convertBodyTo(String.class)
 
-            .log("${body}")
-
             .setHeader("rabbitmq.DELIVERY_MODE", simple("2"))
+
+            .log("Sending ${body} to producer queue.")
 
             .to(rabbitProducerConfig.build());
     }

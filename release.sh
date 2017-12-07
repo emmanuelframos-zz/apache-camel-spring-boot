@@ -1,1 +1,0 @@
-gradle clean build && docker build -t "spring-boot-apache-camel" . && docker-compose up

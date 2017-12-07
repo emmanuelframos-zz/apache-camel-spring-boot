@@ -1,0 +1,1 @@
+docker stop $(docker ps -qa) || true && gradle clean build &&  docker-compose up -d && java -jar build/libs/apache-camel-spring-boot.jar

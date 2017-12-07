@@ -1,18 +1,10 @@
 version: '3.3'
 services:
-  audit-mongo-db:
-    image: mongo:3.6.0
-    container_name: audit-mongo-db
-    hostname: audit-mongo-db
-    ports:
-      - '27017:27017'
-  poc-rabbitmq:
-    image: rabbitmq:3-management
-    container_name: poc-rabbitmq
-    hostname: poc-rabbitmq
-    environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: nimda
-    ports:
-      - '15672:15672'
-      - '5672:5672'
+  rabbitmq:
+      image: rabbitmq:3-management
+      environment:
+        RABBITMQ_DEFAULT_USER: admin
+        RABBITMQ_DEFAULT_PASS: nimda
+      ports:
+        - '15672:15672'
+        - '5672:5672'
