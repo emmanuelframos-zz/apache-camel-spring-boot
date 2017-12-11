@@ -14,9 +14,9 @@ An background application using Apache Camel with Spring Boot stack. The objecti
 2. Execute **run.sh** file
     
 ## Usage
-- We can check the queues in RabbitMQ management console accessing: [http://localhost:15672], using as user: **admin** and password: **nimda**   
+- We can check the queues in RabbitMQ management console accessing: [http://localhost:15672] (http://localhost:15672), with following credentials, user: **admin** and password: **nimda**   
 
-## Funcionalities
+## Functionalities
 - The producer route reads data from file and stores in a queue (QU_PRODUCER).
 - The consumer route consumes data from producer queue (QU_PRODUCER) and sends to consumer queue (QU_CONSUMER) as below:<br/>
 ![](https://preview.ibb.co/isr19b/Screenshot_from_2017_12_07_17_09_11.png)
