@@ -4,6 +4,7 @@ import com.poc.config.rabbit.RabbitConfig;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,10 +14,13 @@ public class FromJSONFileToProducerQueue extends RouteBuilder {
     @Qualifier(value="producerQueueConfig")
     private RabbitConfig rabbitProducerConfig;
 
+    @Value("${rabbitmq.producerExchange.producerPath}")
+    private String producerPath;
+
     @Override
     public void configure() throws Exception {
 
-        from("file://src/main/resources/files?noop=true")
+        from("file:".concat(producerPath))
 
             .routeId("1-STEP_".concat(this.getClass().getSimpleName()))
 

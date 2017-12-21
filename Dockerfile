@@ -2,8 +2,8 @@ FROM java:8-jdk
 
 ENV HOME=/home/application
 
-WORKDIR $HOME/spring-boot-apache-camel
+WORKDIR $HOME/apache-camel-spring-boot
 
-ADD build/libs/spring-boot-apache-camel.jar spring-boot-apache-camel.jar
+ADD wait-for-it.sh wait-for-it.sh
 
-CMD ["java", "-jar", "spring-boot-apache-camel.jar"]
+ADD build/libs/apache-camel-spring-boot.jar apache-camel-spring-boot.jar

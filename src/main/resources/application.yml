@@ -2,12 +2,13 @@ server:
   port: 9000
 
 rabbitmq:
-  host: localhost
+  host: rabbitmq
   port: 5672
   username: admin
   password: nimda
   producerExchange:
     name: EX_PRODUCER
+    producerPath: /home/application/apache-camel-spring-boot/files
     producerQueue:
       name: QU_PRODUCER
       routingKey: RK_PRODUCER

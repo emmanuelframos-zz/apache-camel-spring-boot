@@ -1,5 +1,12 @@
-version: '3.3'
+version: '2'
 services:
+  apache-camel-spring-boot:
+      build: .
+      depends_on:
+        - rabbitmq
+      command: ["./wait-for-it.sh", "rabbitmq:5672", "--", "java", "-jar", "apache-camel-spring-boot.jar"]
+      volumes:
+        - ./files:/home/application/apache-camel-spring-boot/files
   rabbitmq:
       image: rabbitmq:3-management
       environment:

@@ -9,17 +9,19 @@ An background application using Apache Camel with Spring Boot stack. The objecti
 - [Install](https://docs.docker.com/engine/installation/) Docker
 - [Install](https://docs.docker.com/compose/install/) Docker Compose
 
+## Functionalities
+- The producer route reads data from file and stores in a queue (QU_PRODUCER).
+- The consumer route consumes data from producer queue (QU_PRODUCER) and sends to consumer queue (QU_CONSUMER) as below:<br/>
+![](https://preview.ibb.co/isr19b/Screenshot_from_2017_12_07_17_09_11.png)
+
 ## Running application
 1. Access application root directory
 2. Execute **run.sh** file
     
 ## Usage
+- Copy and paste some file in **/files** directory inside project's root directory 
+- File will be integrated into queues in RabbitMQ server
 - We can check the queues in RabbitMQ management console accessing: [http://localhost:15672](http://localhost:15672), with following credentials, user: **admin** and password: **nimda**   
-
-## Functionalities
-- The producer route reads data from file and stores in a queue (QU_PRODUCER).
-- The consumer route consumes data from producer queue (QU_PRODUCER) and sends to consumer queue (QU_CONSUMER) as below:<br/>
-![](https://preview.ibb.co/isr19b/Screenshot_from_2017_12_07_17_09_11.png)
 
 ## Supported Versions
 We recommend that you use:
