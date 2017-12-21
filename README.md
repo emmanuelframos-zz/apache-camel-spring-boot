@@ -19,7 +19,7 @@ An background application using Apache Camel with Spring Boot stack. The objecti
 2. Execute **run.sh** file
     
 ## Usage
-- Copy and paste some file in **/files** directory inside project's root directory 
+- Drop files into **/files** directory, inside project's root directory 
 - File will be integrated into queues in RabbitMQ server
 - We can check the queues in RabbitMQ management console accessing: [http://localhost:15672](http://localhost:15672), with following credentials, user: **admin** and password: **nimda**   
 

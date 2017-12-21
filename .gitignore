@@ -1,8 +1,6 @@
 .gradle/
 *.class
 build/
-files/
-files/*
 files/.camel/*
 files/.camel/
 files/.camel
