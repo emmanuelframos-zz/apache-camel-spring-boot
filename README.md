@@ -1,5 +1,5 @@
 # Apache Camel with Spring Boot
-![](http://buzz-build-aws.dextra-sw.com/job/TEST-API-Parts-And-Services-Deploy/badge/icon&.png)
+![](http://buzz-build-aws.dextra-sw.com/job/TEST-API-Parts-And-Services-Deploy/badge/icon)
 
 ## Description
 An background application using Apache Camel with Spring Boot stack. The objective is produce content and integrate it in queues.
